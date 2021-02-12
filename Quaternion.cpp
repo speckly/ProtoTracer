@@ -311,11 +311,11 @@ bool Quaternion::IsEqual(Quaternion quaternion) {
 		current.Z == quaternion.Z;
 }
 
-String Quaternion::ToString() {
-	String w = Mathematics::DoubleToCleanString(this->W);
-	String x = Mathematics::DoubleToCleanString(this->X);
-	String y = Mathematics::DoubleToCleanString(this->Y);
-	String z = Mathematics::DoubleToCleanString(this->Z);
+string Quaternion::ToString() {
+	string w = Mathematics::DoubleToCleanString(this->W);
+	string x = Mathematics::DoubleToCleanString(this->X);
+	string y = Mathematics::DoubleToCleanString(this->Y);
+	string z = Mathematics::DoubleToCleanString(this->Z);
 	
 	return "[" + w + ", " + x + ", " + y + ", " + z + "]";
 	

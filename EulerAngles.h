@@ -13,5 +13,5 @@ public:
 	EulerAngles();
 	EulerAngles(Vector3D angles, EulerOrder order);
 
-	String ToString();
+	string ToString();
 } EulerAngles;

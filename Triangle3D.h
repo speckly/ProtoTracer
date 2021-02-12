@@ -82,7 +82,7 @@ public:
 		}
 	}
 
-	String ToString() {
+	string ToString() {
 		return p1->ToString() + " " + p2->ToString() + " " + p3->ToString();
 	}
 };

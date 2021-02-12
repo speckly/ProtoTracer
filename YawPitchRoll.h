@@ -15,5 +15,5 @@ public:
 	YawPitchRoll(const YawPitchRoll& ypr);
 	YawPitchRoll(float yaw, float pitch, float roll);
 
-	String ToString();
+	string ToString();
 } YawPitchRoll;

@@ -150,9 +150,9 @@ bool Vector2D::IsEqual(Vector2D vector) {
 	return (this->X == vector.X) && (this->Y == vector.Y);
 }
 
-String Vector2D::ToString() {
-	String x = Mathematics::DoubleToCleanString(this->X);
-	String y = Mathematics::DoubleToCleanString(this->Y);
+string Vector2D::ToString() {
+	string x = Mathematics::DoubleToCleanString(this->X);
+	string y = Mathematics::DoubleToCleanString(this->Y);
 
 	return "[" + x + ", " + y + "]";
 }

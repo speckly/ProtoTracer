@@ -10,11 +10,11 @@ AxisAngle::AxisAngle(float rotation, Vector3D axis) {
 	Axis = axis;
 }
 
-String AxisAngle::ToString() {
-	String r = Mathematics::DoubleToCleanString(Rotation);
-	String x = Mathematics::DoubleToCleanString(Axis.X);
-	String y = Mathematics::DoubleToCleanString(Axis.Y);
-	String z = Mathematics::DoubleToCleanString(Axis.Z);
+string AxisAngle::ToString() {
+	string r = Mathematics::DoubleToCleanString(Rotation);
+	string x = Mathematics::DoubleToCleanString(Axis.X);
+	string y = Mathematics::DoubleToCleanString(Axis.Y);
+	string z = Mathematics::DoubleToCleanString(Axis.Z);
 
 	return r + ": [" + x + " " + y + " " + z + "]";
 }

@@ -24,10 +24,10 @@ YawPitchRoll::YawPitchRoll(float yaw, float pitch, float roll) {
 	this->Roll = roll;
 }
 
-String YawPitchRoll::ToString() {
-	String y = Mathematics::DoubleToCleanString(this->Yaw);
-	String p = Mathematics::DoubleToCleanString(this->Pitch);
-	String r = Mathematics::DoubleToCleanString(this->Roll);
+string YawPitchRoll::ToString() {
+	string y = Mathematics::DoubleToCleanString(this->Yaw);
+	string p = Mathematics::DoubleToCleanString(this->Pitch);
+	string r = Mathematics::DoubleToCleanString(this->Roll);
 
 	return "[" + y + ", " + p + ", " + r + "]";
 }

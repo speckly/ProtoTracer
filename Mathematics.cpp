@@ -23,8 +23,8 @@ float Mathematics::RadiansToDegrees(float radians) {
 	return radians * (180.0f / MPI);
 }
 
-String Mathematics::DoubleToCleanString(float value) {
-	return String(value, 4);
+string Mathematics::DoubleToCleanString(float value) {
+	return  string (value, 4);
 }
 
 bool Mathematics::IsNaN(float value) {

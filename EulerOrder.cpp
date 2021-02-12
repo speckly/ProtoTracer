@@ -17,6 +17,6 @@ EulerOrder::EulerOrder(Axis axis, Parity parity, AxisRepetition axisRepetition, 
 	Permutation = permutation;
 }
 
-String EulerOrder::ToString() {
+string EulerOrder::ToString() {
 	return Permutation.ToString();
 }

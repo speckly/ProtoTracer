@@ -1,6 +1,8 @@
 #pragma once
 #include <math.h> 
-#include <WString.h>
+#include <string>
+
+using namespace std;
 
 class Mathematics {
 public:
@@ -9,7 +11,7 @@ public:
 	static float Constrain(float value, float minimum, float maximum);
 	static float DegreesToRadians(float degrees);
 	static float RadiansToDegrees(float radians);
-	static String DoubleToCleanString(float value);
+	static string DoubleToCleanString(float value);
 	static bool IsNaN(float);
 	static bool IsInfinite(float);
 	static bool IsFinite(float);

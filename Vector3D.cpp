@@ -139,10 +139,10 @@ bool Vector3D::IsEqual(Vector3D vector) {
 	return (this->X == vector.X) && (this->Y == vector.Y) && (this->Z == vector.Z);
 }
 
-String Vector3D::ToString() {
-	String x = Mathematics::DoubleToCleanString(this->X);
-	String y = Mathematics::DoubleToCleanString(this->Y);
-	String z = Mathematics::DoubleToCleanString(this->Z);
+string Vector3D::ToString() {
+	string x = Mathematics::DoubleToCleanString(this->X);
+	string y = Mathematics::DoubleToCleanString(this->Y);
+	string z = Mathematics::DoubleToCleanString(this->Z);
 
 	return "[" + x + ", " + y + ", " + z + "]";
 }

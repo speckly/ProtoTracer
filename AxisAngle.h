@@ -11,5 +11,5 @@ public:
 	AxisAngle(float rotation, float x, float y, float z);
 	AxisAngle(float rotation, Vector3D axis);
 
-	String ToString();
+	string ToString();
 } AxisAngle;

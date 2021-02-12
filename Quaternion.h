@@ -46,7 +46,7 @@ public:
 	bool IsNonZero();
 	bool IsEqual(Quaternion quaternion);
 
-	String ToString();
+	string ToString();
 
 	//Static functions
 	static Quaternion SphericalInterpolation(Quaternion q1, Quaternion q2, float ratio);

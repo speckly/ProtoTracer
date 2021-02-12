@@ -28,7 +28,7 @@ public:
 	float DotProduct(Vector3D vector);
 	float CalculateEuclideanDistance(Vector3D vector);
 	bool IsEqual(Vector3D vector);
-	String ToString();
+	string ToString();
   
   static Vector3D Max(Vector3D max, Vector3D input) {
     return Vector3D(input.X > max.X ? input.X : max.X,

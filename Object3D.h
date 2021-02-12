@@ -28,7 +28,7 @@ public:
     triangleLength = maxTriangles;
   }
 
-  Object3D(String dataset, const int maxVertices, const int maxTriangles){
+  Object3D(string dataset, const int maxVertices, const int maxTriangles){
     vertices = new Vector3D[maxVertices];
     verticesOriginal = new Vector3D[maxVertices];
     triangles = new Triangle3D[maxTriangles];
@@ -41,7 +41,7 @@ public:
     }
   }
   
-  Object3D(String dataset, bool flipX, bool flipY, const int maxVertices, const int maxTriangles){
+  Object3D(string dataset, bool flipX, bool flipY, const int maxVertices, const int maxTriangles){
     vertices = new Vector3D[maxVertices]();
     verticesOriginal = new Vector3D[maxVertices];
     triangles = new Triangle3D[maxTriangles];

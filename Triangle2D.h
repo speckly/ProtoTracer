@@ -72,7 +72,11 @@ public:
 		return u > 0 && v > 0 && w > 0;
 	}
 
-	String ToString() {
+	string ToString() {
 		return p1.ToString() + " " + p2.ToString() + " " + p3.ToString();
 	}
+	
+	   Vector2D GetCenter(){
+        return (p1 + p2 + p3).Divide(3);
+    }
 };

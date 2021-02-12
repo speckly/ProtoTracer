@@ -37,5 +37,5 @@ public:
 
 	EulerOrder();
 	EulerOrder(Axis axis, Parity parity, AxisRepetition axisRepetition, AxisFrame axisFrame, Vector3D permutation);
-	String ToString();
+	string ToString();
 } EulerOrder;

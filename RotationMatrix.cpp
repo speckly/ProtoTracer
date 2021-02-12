@@ -167,10 +167,10 @@ Vector3D RotationMatrix::RotateVector(Vector3D rotate, Vector3D coordinates) {
 	}
 }
 
-String RotationMatrix::ToString() {
-	String x = XAxis.ToString();
-	String y = YAxis.ToString();
-	String z = ZAxis.ToString();
+string RotationMatrix::ToString() {
+	string x = XAxis.ToString();
+	string y = YAxis.ToString();
+	string z = ZAxis.ToString();
 
 	return x + "\n" + y + "\n" + z + "\n";
 }

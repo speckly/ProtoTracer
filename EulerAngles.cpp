@@ -10,9 +10,9 @@ EulerAngles::EulerAngles(Vector3D angles, EulerOrder order) {
 	Order = order;
 }
 
-String EulerAngles::ToString() {
-	String angles = Angles.ToString();
-	String order = Order.ToString();
+string EulerAngles::ToString() {
+	string angles = Angles.ToString();
+	string order = Order.ToString();
 
 	return "[ " + angles + ", " + order + " ]";
 }

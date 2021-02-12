@@ -10,11 +10,11 @@ DirectionAngle::DirectionAngle(float rotation, Vector3D direction) {
 	Direction = direction;
 }
 
-String DirectionAngle::ToString() {
-	String r = Mathematics::DoubleToCleanString(Rotation);
-	String x = Mathematics::DoubleToCleanString(Direction.X);
-	String y = Mathematics::DoubleToCleanString(Direction.Y);
-	String z = Mathematics::DoubleToCleanString(Direction.Z);
+string DirectionAngle::ToString() {
+	string r = Mathematics::DoubleToCleanString(Rotation);
+	string x = Mathematics::DoubleToCleanString(Direction.X);
+	string y = Mathematics::DoubleToCleanString(Direction.Y);
+	string z = Mathematics::DoubleToCleanString(Direction.Z);
 
 	return r + ": [" + x + " " + y + " " + z + "]";
 }

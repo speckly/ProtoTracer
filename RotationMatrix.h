@@ -35,7 +35,7 @@ public:
 
 	static Vector3D RotateVector(Vector3D rotate, Vector3D coordinates);
 
-	String ToString();
+	string ToString();
 
 	RotationMatrix operator =(RotationMatrix rM) {
 		this->XAxis = rM.XAxis;

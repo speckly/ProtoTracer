@@ -33,7 +33,7 @@ public:
 	float DotProduct(Vector2D vector);
 	float CalculateEuclideanDistance(Vector2D vector);
 	bool IsEqual(Vector2D vector);
-	String ToString();
+	string ToString();
   
   static Vector2D LERP(Vector2D start, Vector2D finish, float ratio) {
     return finish * ratio + start * (1.0f - ratio);
