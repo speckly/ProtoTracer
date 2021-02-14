@@ -45,7 +45,7 @@ public:
 			line = getValue(*value, '\n', i);
 
 			if (countChar(line, ' ') > 2) {
-				if (getValue(line, ' ', 0).compare("v")) {
+				if (getValue(line, ' ', 0).compare("v")==0) {
 					Vector3D vertex;
 
 					vertex.X = stof(getValue(line, ' ', 1));
@@ -62,7 +62,7 @@ public:
           
           if (*vertexLength > maxVertices) break;
 				}
-				else if (getValue(line, ' ', 0).compare("f")) {
+				else if (getValue(line, ' ', 0).compare("f")==0) {
 					int x, y, z;
 
 					x = stoi(getValue(line, ' ', 1)) - 1;

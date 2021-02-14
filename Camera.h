@@ -24,11 +24,11 @@ private:
 
       for (int t = 0; t < numTriangles; t++) {
         Vector3D barycentric;
-		std::cout << "PixelRay: ";
-		std::cout << pixelRay.ToString();
-		std::cout << " TriangleCen: ";
-		std::cout << triangles[t].GetCenter().ToString();
-		std::cout << "\n";
+		Vector2D tCenter = triangles[t].GetCenter();
+
+                //printf("PixelRay: %f, %f; ", pixelRay.X, pixelRay.Y);
+                //printf("TriangleCen: %f, %f\n", tCenter.X, tCenter.Y);
+
 
 
 
@@ -168,7 +168,7 @@ public:
 	void Rasterize(Scene* scene, float scale, float maxBrightness) {
     int numTriangles = 0;
 
-    printf("Num objects: %i\n", scene->numObjects);
+    //printf("Num objects: %i\n", scene->numObjects);
 
     //for each object in the scene, get the triangles
     for(int i = 0; i < scene->numObjects; i++){
@@ -194,7 +194,7 @@ public:
       }
 	  }
 
-		printf("Rasterized triangles: %i\n", triangleCounter);
+		//printf("Rasterized triangles: %i\n", triangleCounter);
 
 		for (unsigned int i = 0; i < pixelCount; i++) {
       Vector2D pixelRay = Vector2D(pixelStorage[i].X * scale, pixelStorage[i].Y * scale);

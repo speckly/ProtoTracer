@@ -24,7 +24,7 @@ float Mathematics::RadiansToDegrees(float radians) {
 }
 
 string Mathematics::DoubleToCleanString(float value) {
-	return  string (value, 4);
+	return  to_string(value);
 }
 
 bool Mathematics::IsNaN(float value) {

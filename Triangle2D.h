@@ -32,7 +32,7 @@ public:
     v1 = p3 - p1;
 	}
 
-	Triangle2D(Quaternion camQ, Vector3D camV, Triangle3D t) {
+	Triangle2D(Quaternion camQ, Vector3D camV, Triangle3D& t) {
 		camV.X = -camV.X;
 		camV.Y = -camV.Y;
 		p1 = camQ.UnrotateVector(Vector3D(*t.p1)) - camV;
