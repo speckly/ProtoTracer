@@ -10,7 +10,7 @@ As a quick way to showcase the capabilities of this software, here is a recordin
 * 200MHz+ processor
 * At least 80KB dynamic memory
 
-This codebase has been tested on an Arduino Mega (smaller .OBJ file with a 89 pixel matrix) and on a Teensy 4.0 (600 triangle scene with a 2,804 pixel matrix).
+This codebase has been tested on an Arduino Mega (smaller .OBJ file with a 89 pixel matrix), on a Teensy 4.0 (600 triangle scene with a 2,804 pixel matrix), and on a Raspberry Pi.
 
 # Usage:
 To use the Protogen Ray-Tracing Engine you must first follow a few requirements:
@@ -100,19 +100,17 @@ In this example codebase utilizing the libsense library, all that must be done t
 for (int ii = 0; ii < 8; ii++) {
     for (int jj = 0; jj < 8; jj++) {
         int currentLED = (ii * 8) + jj; //create 1D array index from 2D coordinates
-					
+		
         uint8_t red = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.X);
         uint8_t green = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.Y);
         uint8_t blue = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.Z);
-					
-        mem.setPixel(jj,ii,sense::color(red,green,blue)); //set the pixel's color in memory
+		
+		mem.setPixel(jj,ii,sense::color(red,green,blue)); //set the pixel's color in memory
 	}
-			
 }
 fb = mem; //copy the pixels to the matrix
 usleep(8333); //the pi is much faster than a teensy, so we must sleep in order to keep the framerate reasonable.
 ```
-This method is not as efficient as it could be implemented as it could be writing directly to the DMA memory, however, this method allows for easier cross compatibility between platforms.
 
 ## Creating animations:
 With your set up complete, now animations can be made. With all individual object, light, and camera manipulations described above, they simply need to be implemented within your main loop to change over time. This customization is entirely up to you, but as an example, here is an animation of a DVD logo bouncing around the screen in a figure 8 pattern:
