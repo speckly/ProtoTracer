@@ -93,27 +93,24 @@ camFrontTop.Rasterize(scene, 1.0f, 20);
 ```
 
 ## Writing to your LED matrix:
-You must implement the firmware for writing to your specific LED matrices. The included example utilizes the [OctoWS2811](https://github.com/PaulStoffregen/OctoWS2811) by Paul Stoffregen for writing to 4 WS2812B LED panels using a Teensy 4.0 or 4.1 microcontroller. To use your own LED code you will need to remove the lines containing the Teensy specific LED code and replace it with your own.
+You must implement the firmware for writing to your specific LED matrices. The included example utilizes the [libsense](https://github.com/moshegottlieb/libsense) by Moshe Gottlieb for writing to the 8x8 LED matrix on the Raspberry Pi Sense HAT. To use your own LED code you will need to remove the lines containing the Pi specific LED code and replace it with your own.
 
-In this example codebase utilizing the OctoWS2811 library, all that must be done to set the LED outputs is as follows:
+In this example codebase utilizing the libsense library, all that must be done to set the LED outputs is as follows:
 ```C++
-//Set the library specific parameters
-const int ledsPerStrip = 306;//Set LEDs per board
-DMAMEM int displayMemory[ledsPerStrip * 6];//Set up the display memory
-int drawingMemory[ledsPerStrip * 6];//Set up the drawing memory
-const int config = WS2811_GRB | WS2811_800kHz;//Set the config for color and LED type
-OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory, config);//Initialize the library constructor
-
-//Read each pixel from the ray-tracing engine and write it to the output LED DMA memory
-for (int i = 0; i < 306; i++) {
-  leds.setPixel(i,       (byte)camFrontTop.GetPixels()[i].RGB.X, (byte)camFrontTop.GetPixels()[i].RGB.Y, (byte)camFrontTop.GetPixels()[i].RGB.Z);
-  leds.setPixel(i + 306,   (byte)camRearTop.GetPixels()[i].RGB.X, (byte)camRearTop.GetPixels()[i].RGB.Y, (byte)camRearTop.GetPixels()[i].RGB.Z);
-  leds.setPixel(i + 306 * 2, (byte)camFrontBottom.GetPixels()[i].RGB.X, (byte)camFrontBottom.GetPixels()[i].RGB.Y, (byte)camFrontBottom.GetPixels()[i].RGB.Z);
-  leds.setPixel(i + 306 * 3, (byte)camRearBottom.GetPixels()[i].RGB.X, (byte)camRearBottom.GetPixels()[i].RGB.Y, (byte)camRearBottom.GetPixels()[i].RGB.Z);
+for (int ii = 0; ii < 8; ii++) {
+    for (int jj = 0; jj < 8; jj++) {
+        int currentLED = (ii * 8) + jj; //create 1D array index from 2D coordinates
+					
+        uint8_t red = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.X);
+        uint8_t green = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.Y);
+        uint8_t blue = (uint8_t)(camFrontTop.GetPixels()[currentLED].RGB.Z);
+					
+        mem.setPixel(jj,ii,sense::color(red,green,blue)); //set the pixel's color in memory
+	}
+			
 }
-
-//Update the LED outputs
-leds.show();
+fb = mem; //copy the pixels to the matrix
+usleep(8333); //the pi is much faster than a teensy, so we must sleep in order to keep the framerate reasonable.
 ```
 This method is not as efficient as it could be implemented as it could be writing directly to the DMA memory, however, this method allows for easier cross compatibility between platforms.
 
