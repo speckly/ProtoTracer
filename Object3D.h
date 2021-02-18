@@ -7,8 +7,8 @@
 class Object3D {
 private:
   Quaternion q = Quaternion(1, 0, 0, 0);
-  Vector3D p = Vector3D(0, 0, 0);
-  Vector3D s = Vector3D(1, 1, 1);
+  Vector3D p = Vector3D(0.0, 0.0, 0.0);
+  Vector3D s = Vector3D(1.0, 1.0, 1.0);
   Vector3D* verticesOriginal;
   Vector3D* vertices;
   Triangle3D* triangles;
@@ -117,6 +117,10 @@ public:
     return center;
   }
   
+  void UpdateVertex(int index, Vector3D newVertex) {
+	  vertices[index] = newVertex;
+  }
+  
   void Rotate(Quaternion q) {
     this->q = Quaternion(q);
 
@@ -179,12 +183,29 @@ public:
     }
   }
 
-  void Move(Vector3D p){
+  void Move(Vector3D p){ //moves relative to last coordinate
     for (int i = 0; i < vertexLength; i++) {
       vertices[i] = vertices[i] + p;
     }
 
     this->p = p;
   }
+  
+  void MoveOriginal(Vector3D p){ //moves relative to original coordinates
+    for (int i = 0; i < vertexLength; i++) {
+      vertices[i] = verticesOriginal[i] + p;
+    }
 
+    this->p = p;
+  }
+  
+  void MoveCenter(Vector3D p){ //moves current center to specified coordinate
+	  Vector3D vCenter = GetVertexCenter();
+	  Move(p - vCenter);
+  }
+  
+	void MoveOriginalCenter(Vector3D p){ //moves original center to specified coordinate
+		Vector3D vCenter = GetVertexCenter();
+		MoveOriginal(p - vCenter);
+	}
 };

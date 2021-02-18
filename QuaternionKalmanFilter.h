@@ -4,7 +4,7 @@
 
 class QuaternionKalmanFilter {
 private:
-  float gain;
+  double gain;
   int memory;
   Quaternion* values;
  
@@ -14,7 +14,7 @@ private:
 
 public:
   QuaternionKalmanFilter();
-  QuaternionKalmanFilter(float gain, int memory);
+  QuaternionKalmanFilter(double gain, int memory);
 
   Quaternion Filter(Quaternion input);
 

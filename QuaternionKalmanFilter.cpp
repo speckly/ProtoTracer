@@ -1,13 +1,13 @@
 #include "QuaternionKalmanFilter.h"
 
 QuaternionKalmanFilter::QuaternionKalmanFilter() {
-  gain = 0.25f;
+  gain = 0.25;
   memory = 25;
 
   values = new Quaternion[25];
 }
 
-QuaternionKalmanFilter::QuaternionKalmanFilter(float gain, int memory) {
+QuaternionKalmanFilter::QuaternionKalmanFilter(double gain, int memory) {
   this->gain = gain;
   this->memory = memory;
   

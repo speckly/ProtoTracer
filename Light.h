@@ -6,15 +6,15 @@ class Light {
 public:
 	Vector3D p;
 	Vector3D intensity;//R, G, B
-  float falloff = 1000.0f;
-  float a = 0.0f;
-  float b = 1.0f;
+  double falloff = 1000.0;
+  double a = 0.0;
+  double b = 1.0;
   
 	Light(){}
 
-	Light(Vector3D p, Vector3D intensity, float falloff, float a, float b) : p(p), intensity(intensity), falloff(falloff), a(a), b(b) {}
+	Light(Vector3D p, Vector3D intensity, double falloff, double a, double b) : p(p), intensity(intensity), falloff(falloff), a(a), b(b) {}
 
-	void Set(Vector3D p, Vector3D intensity, float falloff, float a, float b) {
+	void Set(Vector3D p, Vector3D intensity, double falloff, double a, double b) {
 		this->p = p;
 		this->intensity = intensity;
     this->falloff = falloff;
@@ -26,7 +26,7 @@ public:
     this->intensity = intensity;
   }
 
-  void SetFalloff(float falloff, float a, float b) {
+  void SetFalloff(double falloff, double a, double b) {
     this->falloff = falloff;
     this->a = a;
     this->b = b;
@@ -40,11 +40,11 @@ public:
 		this->p = this->p + p;
 	}
 
-  void SetFalloff(float falloff){
+  void SetFalloff(double falloff){
     this->falloff = fabs(falloff);
   }
 
-  void SetCurve(float a, float b){
+  void SetCurve(double a, double b){
     this->a = a;
     this->b = b;
   }

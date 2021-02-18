@@ -24,9 +24,9 @@ Vector3D RotationMatrix::ConvertCoordinateToVector() {
 }
 
 void RotationMatrix::ReadjustMatrix() {
-	float X = (XAxis.X + YAxis.X + ZAxis.X);
-	float Y = (XAxis.Y + YAxis.Y + ZAxis.Y);
-	float Z = (XAxis.Z + YAxis.Z + ZAxis.Z);
+	double X = (XAxis.X + YAxis.X + ZAxis.X);
+	double Y = (XAxis.Y + YAxis.Y + ZAxis.Y);
+	double Z = (XAxis.Z + YAxis.Z + ZAxis.Z);
 
 	XAxis = Vector3D(X, X, X);
 	YAxis = Vector3D(Y, Y, Y);
@@ -63,34 +63,34 @@ void RotationMatrix::Rotate(Vector3D rotation) {
 	}
 }
 
-void RotationMatrix::RotateX(float theta) {
-	float c = cosf(Mathematics::DegreesToRadians(theta));
-	float s = sinf(Mathematics::DegreesToRadians(theta));
+void RotationMatrix::RotateX(double theta) {
+	double c = cosf(Mathematics::DegreesToRadians(theta));
+	double s = sinf(Mathematics::DegreesToRadians(theta));
 
 	XAxis = Vector3D(1, 0,  0).Multiply(XAxis);
 	YAxis = Vector3D(0, c, -s).Multiply(YAxis);
 	ZAxis = Vector3D(0, s,  c).Multiply(ZAxis);
 }
 
-void RotationMatrix::RotateY(float theta) {
-	float c = cosf(Mathematics::DegreesToRadians(theta));
-	float s = sinf(Mathematics::DegreesToRadians(theta));
+void RotationMatrix::RotateY(double theta) {
+	double c = cosf(Mathematics::DegreesToRadians(theta));
+	double s = sinf(Mathematics::DegreesToRadians(theta));
 
 	XAxis = Vector3D( c, 0, s).Multiply(XAxis);
 	YAxis = Vector3D( 0, 1, 0).Multiply(YAxis);
 	ZAxis = Vector3D(-s, 0, c).Multiply(ZAxis);
 }
 
-void RotationMatrix::RotateZ(float theta) {
-	float c = cosf(Mathematics::DegreesToRadians(theta));
-	float s = sinf(Mathematics::DegreesToRadians(theta));
+void RotationMatrix::RotateZ(double theta) {
+	double c = cosf(Mathematics::DegreesToRadians(theta));
+	double s = sinf(Mathematics::DegreesToRadians(theta));
 
 	XAxis = Vector3D(c, -s, 0).Multiply(XAxis);
 	YAxis = Vector3D(s,  c, 0).Multiply(YAxis);
 	ZAxis = Vector3D(0,  0, 1).Multiply(ZAxis);
 }
 
-RotationMatrix RotationMatrix::Multiply(float d) {
+RotationMatrix RotationMatrix::Multiply(double d) {
 	return RotationMatrix {
 		XAxis.Multiply(d),
 		YAxis.Multiply(d),
@@ -147,7 +147,7 @@ bool RotationMatrix::IsEqual(RotationMatrix rM) {
 	return XAxis.IsEqual(rM.XAxis) && YAxis.IsEqual(rM.YAxis) && ZAxis.IsEqual(rM.ZAxis);
 }
 
-float RotationMatrix::Determinant() {
+double RotationMatrix::Determinant() {
 	return XAxis.X * (YAxis.Y * ZAxis.Z - ZAxis.Y * YAxis.Z) -
 		   YAxis.X * (ZAxis.Z * XAxis.Y - ZAxis.Y * XAxis.Z) +
 		   ZAxis.X * (XAxis.Y * YAxis.Z - YAxis.Y * XAxis.Z);

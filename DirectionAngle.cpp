@@ -1,11 +1,11 @@
 #include "DirectionAngle.h"
 
-DirectionAngle::DirectionAngle(float rotation, float x, float y, float z) {
+DirectionAngle::DirectionAngle(double rotation, double x, double y, double z) {
 	Rotation = rotation;
 	Direction = Vector3D(x, y, z);
 }
 
-DirectionAngle::DirectionAngle(float rotation, Vector3D direction) {
+DirectionAngle::DirectionAngle(double rotation, Vector3D direction) {
 	Rotation = rotation;
 	Direction = direction;
 }

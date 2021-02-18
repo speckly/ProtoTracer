@@ -11,9 +11,9 @@ private:
 	Vector3D ConvertCoordinateToVector();
 	void ReadjustMatrix();
 	void Rotate(Vector3D rotation);
-	void RotateX(float theta);
-	void RotateY(float theta);
-	void RotateZ(float theta);
+	void RotateX(double theta);
+	void RotateY(double theta);
+	void RotateZ(double theta);
 	void RotateRelative(RotationMatrix rM);
 
 public:
@@ -27,11 +27,11 @@ public:
 	RotationMatrix Normalize();
 	RotationMatrix Transpose();
 	RotationMatrix Inverse();
-	RotationMatrix Multiply(float d);
+	RotationMatrix Multiply(double d);
 	RotationMatrix Multiply(RotationMatrix rM);
 
 	bool IsEqual(RotationMatrix rM);
-	float Determinant();
+	double Determinant();
 
 	static Vector3D RotateVector(Vector3D rotate, Vector3D coordinates);
 

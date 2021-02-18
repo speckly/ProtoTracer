@@ -60,10 +60,10 @@ public:
 
 	bool DidIntersect(Vector2D ray, Vector3D* color) {
 		Vector2D v2 = ray - p1;
-		float den = v0.X * v1.Y - v1.X * v0.Y;
-		float v = (v2.X * v1.Y - v1.X * v2.Y) / den;
-		float w = (v0.X * v2.Y - v2.X * v0.Y) / den;
-		float u = 1.0f - v - w;
+		double den = v0.X * v1.Y - v1.X * v0.Y;
+		double v = (v2.X * v1.Y - v1.X * v2.Y) / den;
+		double w = (v0.X * v2.Y - v2.X * v0.Y) / den;
+		double u = 1.0 - v - w;
 
 		color->X = v;
 		color->Y = w;

@@ -6,12 +6,12 @@
 
 typedef struct Vector2D {
 public:
-	float X = 0.0f;
-	float Y = 0.0f;
+	double X = 0.0;
+	double Y = 0.0;
 
 	Vector2D();
 	Vector2D(const Vector2D& vector);
-	Vector2D(float x, float y);
+	Vector2D(double x, double y);
 	Vector2D(Vector3D xy);
 	Vector2D(const Vector3D& vector);
 	Vector2D Absolute();
@@ -20,31 +20,31 @@ public:
 	Vector2D Subtract(Vector2D vector);
 	Vector2D Multiply(Vector2D vector);
 	Vector2D Divide(Vector2D vector);
-	Vector2D Multiply(float scalar);
-	Vector2D Divide(float scalar);
+	Vector2D Multiply(double scalar);
+	Vector2D Divide(double scalar);
 	Vector3D CrossProduct(Vector2D vector);
 	Vector2D UnitCircle();//unit sphere
-	Vector2D Constrain(float minimum, float maximum);
+	Vector2D Constrain(double minimum, double maximum);
 	Vector2D Constrain(Vector2D minimum, Vector2D maximum);
 	Vector2D Minimum(Vector2D v1, Vector2D v2);
 	Vector2D Maximum(Vector2D v1, Vector2D v2);
 
-	float Magnitude();
-	float DotProduct(Vector2D vector);
-	float CalculateEuclideanDistance(Vector2D vector);
+	double Magnitude();
+	double DotProduct(Vector2D vector);
+	double CalculateEuclideanDistance(Vector2D vector);
 	bool IsEqual(Vector2D vector);
 	string ToString();
   
-  static Vector2D LERP(Vector2D start, Vector2D finish, float ratio) {
-    return finish * ratio + start * (1.0f - ratio);
+  static Vector2D LERP(Vector2D start, Vector2D finish, double ratio) {
+    return finish * ratio + start * (1.0 - ratio);
   }
   
 	static Vector2D DegreesToRadians(Vector2D degrees) {
-		return degrees / (180.0f / Mathematics::MPI);
+		return degrees / (180.0 / Mathematics::MPI);
 	}
 
 	static Vector2D RadiansToDegrees(Vector2D radians) {
-		return radians * (180.0f / Mathematics::MPI);
+		return radians * (180.0 / Mathematics::MPI);
 	}
 
 	//Static function declaractions
@@ -68,15 +68,15 @@ public:
 		return v1.Divide(v2);
 	}
 
-	static Vector2D Multiply(Vector2D vector, float scalar) {
+	static Vector2D Multiply(Vector2D vector, double scalar) {
 		return vector.Multiply(scalar);
 	}
 
-	static Vector2D Multiply(float scalar, Vector2D vector) {
+	static Vector2D Multiply(double scalar, Vector2D vector) {
 		return vector.Multiply(scalar);
 	}
 
-	static Vector2D Divide(Vector2D vector, float scalar) {
+	static Vector2D Divide(Vector2D vector, double scalar) {
 		return vector.Divide(scalar);
 	}
 
@@ -84,11 +84,11 @@ public:
 		return v1.CrossProduct(v2);
 	}
 
-	static float DotProduct(Vector2D v1, Vector2D v2) {
+	static double DotProduct(Vector2D v1, Vector2D v2) {
 		return v1.DotProduct(v2);
 	}
 
-	static float CalculateEuclideanDistance(Vector2D v1, Vector2D v2) {
+	static double CalculateEuclideanDistance(Vector2D v1, Vector2D v2) {
 		return v1.CalculateEuclideanDistance(v2);
 	}
 
@@ -143,13 +143,13 @@ public:
 		return v.Divide(vector);
 	}
 
-	Vector2D operator  *(float value) {
+	Vector2D operator  *(double value) {
 		Vector2D v = Vector2D(*this);
 
 		return v.Multiply(value);
 	}
 
-	Vector2D operator  /(float value) {
+	Vector2D operator  /(double value) {
 		Vector2D v = Vector2D(*this);
 
 		return v.Divide(value);

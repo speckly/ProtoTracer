@@ -1,11 +1,11 @@
 #include "AxisAngle.h"
 
-AxisAngle::AxisAngle(float rotation, float x, float y, float z) {
+AxisAngle::AxisAngle(double rotation, double x, double y, double z) {
 	Rotation = rotation;
 	Axis = Vector3D(x, y, z);
 }
 
-AxisAngle::AxisAngle(float rotation, Vector3D axis) {
+AxisAngle::AxisAngle(double rotation, Vector3D axis) {
 	Rotation = rotation;
 	Axis = axis;
 }

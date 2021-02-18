@@ -6,7 +6,7 @@ VectorKalmanFilter::VectorKalmanFilter() {
 	Z = KalmanFilter();
 }
 
-VectorKalmanFilter::VectorKalmanFilter(float gain, int memory) {
+VectorKalmanFilter::VectorKalmanFilter(double gain, int memory) {
 	X = KalmanFilter(gain, memory);
 	Y = KalmanFilter(gain, memory);
 	Z = KalmanFilter(gain, memory);

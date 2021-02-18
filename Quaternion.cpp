@@ -1,10 +1,10 @@
 #include "Quaternion.h"
 
 Quaternion::Quaternion() {
-	this->W = 1.0f;
-	this->X = 0.0f;
-	this->Y = 0.0f;
-	this->Z = 0.0f;
+	this->W = 1.0;
+	this->X = 0.0;
+	this->Y = 0.0;
+	this->Z = 0.0;
 }
 
 Quaternion::Quaternion(const Quaternion& quaternion) {
@@ -21,7 +21,7 @@ Quaternion::Quaternion(Vector3D vector) {
 	this->Z = vector.Z;
 }
 
-Quaternion::Quaternion(float w, float x, float y, float z) {
+Quaternion::Quaternion(double w, double x, double y, double z) {
 	this->W = w;
 	this->X = x;
 	this->Y = y;
@@ -54,13 +54,13 @@ Vector3D Quaternion::GetBiVector() {
 	};
 }
 
-Quaternion Quaternion::SphericalInterpolation(Quaternion q1, Quaternion q2, float ratio) {
+Quaternion Quaternion::SphericalInterpolation(Quaternion q1, Quaternion q2, double ratio) {
 	q1 = q1.UnitQuaternion();
 	q2 = q2.UnitQuaternion();
 
-	float dot = q1.DotProduct(q2);//Cosine between the two quaternions
+	double dot = q1.DotProduct(q2);//Cosine between the two quaternions
 
-	if (dot < 0.0f)//Shortest path correction
+	if (dot < 0.0)//Shortest path correction
 	{
 		q1 = q1.AdditiveInverse();
 		dot = -dot;
@@ -74,12 +74,12 @@ Quaternion Quaternion::SphericalInterpolation(Quaternion q1, Quaternion q2, floa
 	{
 		dot = Mathematics::Constrain(dot, -1, 1);
 
-		float theta0 = acosf(dot);
-		float theta = theta0 * ratio;
+		double theta0 = acosf(dot);
+		double theta = theta0 * ratio;
 
 		//Quaternion q3 = (q2.Subtract(q1.Multiply(dot))).UnitQuaternion();//UQ for orthonomal 
-		float f1 = cosf(theta) - dot * sinf(theta) / sinf(theta0);
-		float f2 = sinf(theta) / sinf(theta0);
+		double f1 = cosf(theta) - dot * sinf(theta) / sinf(theta0);
+		double f2 = sinf(theta) / sinf(theta0);
 
 		return q1.Multiply(f1).Add(q2.Multiply(f2)).UnitQuaternion();
 	}
@@ -119,7 +119,7 @@ Quaternion Quaternion::Multiply(Quaternion quaternion) {
 	};
 }
 
-Quaternion Quaternion::Multiply(float scalar) {
+Quaternion Quaternion::Multiply(double scalar) {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
 	return Quaternion{
@@ -130,20 +130,20 @@ Quaternion Quaternion::Multiply(float scalar) {
 	};
 }
 
-Quaternion operator  *(float scalar, Quaternion q) {
+Quaternion operator  *(double scalar, Quaternion q) {
 	Quaternion quaternion = Quaternion(q.W, q.X, q.Y, q.Z);
 
 	return quaternion.Multiply(scalar);
 }
 
-Quaternion operator  *(Quaternion q, float scalar) {
+Quaternion operator  *(Quaternion q, double scalar) {
 	Quaternion quaternion = Quaternion(q.W, q.X, q.Y, q.Z);
 
 	return quaternion.Multiply(scalar);
 }
 
 Quaternion Quaternion::Divide(Quaternion quaternion) {
-	float scale = quaternion.W * quaternion.W + quaternion.X * quaternion.X + quaternion.Y * quaternion.Y + quaternion.Z * quaternion.Z;
+	double scale = quaternion.W * quaternion.W + quaternion.X * quaternion.X + quaternion.Y * quaternion.Y + quaternion.Z * quaternion.Z;
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
 	return Quaternion
@@ -155,7 +155,7 @@ Quaternion Quaternion::Divide(Quaternion quaternion) {
 	};
 }
 
-Quaternion Quaternion::Divide(float scalar) {
+Quaternion Quaternion::Divide(double scalar) {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
 	return Quaternion
@@ -179,7 +179,7 @@ Quaternion Quaternion::Power(Quaternion exponent) {
 	};
 }
 
-Quaternion Quaternion::Power(float exponent) {
+Quaternion Quaternion::Power(double exponent) {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
 	return Quaternion
@@ -193,7 +193,7 @@ Quaternion Quaternion::Power(float exponent) {
 
 Quaternion Quaternion::Permutate(Vector3D permutation) {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
-	float perm[3];
+	double perm[3];
 
 	perm[(int)permutation.X] = current.X;
 	perm[(int)permutation.Y] = current.Y;
@@ -233,7 +233,7 @@ Quaternion Quaternion::AdditiveInverse() {
 Quaternion Quaternion::MultiplicativeInverse() {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
-	return current.Conjugate().Multiply(1.0f / current.Normal());
+	return current.Conjugate().Multiply(1.0 / current.Normal());
 
 }
 
@@ -252,7 +252,7 @@ Quaternion Quaternion::Conjugate() {
 Quaternion Quaternion::UnitQuaternion() {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
-	float n = current.Normal();
+	double n = current.Normal();
 
 	current.W = current.W / n;
 	current.X = current.X / n;
@@ -262,19 +262,19 @@ Quaternion Quaternion::UnitQuaternion() {
 	return current;
 }
 
-float Quaternion::Magnitude() {
+double Quaternion::Magnitude() {
 	return sqrtf(Normal());
 }
 
-float Quaternion::DotProduct(Quaternion q) {
+double Quaternion::DotProduct(Quaternion q) {
 	return (W * q.W) + (X * q.X) + (Y * q.Y) + (Z * q.Z);
 }
 
-float Quaternion::Normal() {
+double Quaternion::Normal() {
 	Quaternion current = Quaternion(this->W, this->X, this->Y, this->Z);
 
 
-	return powf(current.W, 2.0f) + powf(current.X, 2.0f) + powf(current.Y, 2.0f) + powf(current.Z, 2.0f);
+	return powf(current.W, 2.0) + powf(current.X, 2.0) + powf(current.Y, 2.0) + powf(current.Z, 2.0);
 }
 
 bool Quaternion::IsNaN() {

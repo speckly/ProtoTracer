@@ -45,24 +45,24 @@ public:
 
 	bool DidIntersect(Vector3D ray, Vector3D direction, Vector3D* intersect, Vector3D* color) {
 		Vector3D pvec = direction.CrossProduct(edge2);
-		float det = edge1.DotProduct(pvec);
-		float invDet = 1.0f / det;
+		double det = edge1.DotProduct(pvec);
+		double invDet = 1.0 / det;
 
 		//if (det < FLT_EPSILON) return false;//non culling
 		//if (-det < FLT_EPSILON) return false;//culling
-		if (fabs(det) < 0.000001f) return false;//ray/triangle parallel if close to 0
+		if (fabs(det) < 0.000001) return false;//ray/triangle parallel if close to 0
 
 		Vector3D tvec = ray - *p1;
-		float u = tvec.DotProduct(pvec) * invDet;
-		if (u < 0.0f || u > 1.0f) return false;
+		double u = tvec.DotProduct(pvec) * invDet;
+		if (u < 0.0 || u > 1.0) return false;
 
 		Vector3D qvec = tvec.CrossProduct(edge1);
-		float v = direction.DotProduct(qvec) * invDet;
-		if (v < 0.0f || u + v > 1.0f) return false;
+		double v = direction.DotProduct(qvec) * invDet;
+		if (v < 0.0 || u + v > 1.0) return false;
 
-		float t = edge2.DotProduct(qvec) * invDet;//
+		double t = edge2.DotProduct(qvec) * invDet;//
 
-		if (t > 0.000001f) {//ray intersection
+		if (t > 0.000001) {//ray intersection
 			Vector3D tempInt = *p1 + (edge2 * u) + (edge1 * v);
 
 			tempInt = ray + direction.Multiply(t);
@@ -73,7 +73,7 @@ public:
 
 			color->X = u;
 			color->Y = v;
-			color->Z = (1.0f - u - v);
+			color->Z = (1.0 - u - v);
 
 			return true;
 		}

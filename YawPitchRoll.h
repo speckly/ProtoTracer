@@ -6,14 +6,14 @@ typedef struct YawPitchRoll {
 private:
 
 public:
-	float Yaw = 0.0f;
-	float Pitch = 0.0f;
-	float Roll = 0.0f;
+	double Yaw = 0.0;
+	double Pitch = 0.0;
+	double Roll = 0.0;
 
 	YawPitchRoll();
 	YawPitchRoll(Vector3D vector);
 	YawPitchRoll(const YawPitchRoll& ypr);
-	YawPitchRoll(float yaw, float pitch, float roll);
+	YawPitchRoll(double yaw, double pitch, double roll);
 
 	string ToString();
 } YawPitchRoll;

@@ -4,11 +4,11 @@
 
 typedef struct DirectionAngle {
 public:
-	float Rotation;
+	double Rotation;
 	Vector3D Direction;
 
-	DirectionAngle(float rotation, float x, float y, float z);
-	DirectionAngle(float rotation, Vector3D direction);
+	DirectionAngle(double rotation, double x, double y, double z);
+	DirectionAngle(double rotation, Vector3D direction);
 
 	string ToString();
 } DirectionAngle;

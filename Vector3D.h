@@ -4,29 +4,29 @@
 
 typedef struct Vector3D {
 public:
-	float X = 0.0f;
-	float Y = 0.0f;
-	float Z = 0.0f;
+	double X = 0.0f;
+	double Y = 0.0f;
+	double Z = 0.0f;
 
 	Vector3D();
 	Vector3D(const Vector3D& vector);
-	Vector3D(float x, float y, float z);
+	Vector3D(double x, double y, double z);
 	Vector3D Absolute();
 	Vector3D Normal();
 	Vector3D Add(Vector3D vector);
 	Vector3D Subtract(Vector3D vector);
 	Vector3D Multiply(Vector3D vector);
 	Vector3D Divide(Vector3D vector);
-	Vector3D Multiply(float scalar);
-	Vector3D Divide(float scalar);
+	Vector3D Multiply(double scalar);
+	Vector3D Divide(double scalar);
 	Vector3D CrossProduct(Vector3D vector);
 	Vector3D UnitSphere();//unit sphere
-	Vector3D Constrain(float minimum, float maximum);
+	Vector3D Constrain(double minimum, double maximum);
 	Vector3D Constrain(Vector3D minimum, Vector3D maximum);
 
-	float Magnitude();
-	float DotProduct(Vector3D vector);
-	float CalculateEuclideanDistance(Vector3D vector);
+	double Magnitude();
+	double DotProduct(Vector3D vector);
+	double CalculateEuclideanDistance(Vector3D vector);
 	bool IsEqual(Vector3D vector);
 	string ToString();
   
@@ -43,16 +43,16 @@ public:
       input.Z < min.Z ? input.Z : min.Z);
   }
 
-  static Vector3D LERP(Vector3D start, Vector3D finish, float ratio) {
-    return finish * ratio + start * (1.0f - ratio);
+  static Vector3D LERP(Vector3D start, Vector3D finish, double ratio) {
+    return finish * ratio + start * (1.0 - ratio);
   }
 
 	static Vector3D DegreesToRadians(Vector3D degrees) {
-		return degrees / (180.0f / Mathematics::MPI);
+		return degrees / (180.0 / Mathematics::MPI);
 	}
 
 	static Vector3D RadiansToDegrees(Vector3D radians) {
-		return radians * (180.0f / Mathematics::MPI);
+		return radians * (180.0 / Mathematics::MPI);
 	}
 
 	//Static function declaractions
@@ -76,15 +76,15 @@ public:
 		return v1.Divide(v2);
 	}
 
-	static Vector3D Multiply(Vector3D vector, float scalar) {
+	static Vector3D Multiply(Vector3D vector, double scalar) {
 		return vector.Multiply(scalar);
 	}
 
-	static Vector3D Multiply(float scalar, Vector3D vector) {
+	static Vector3D Multiply(double scalar, Vector3D vector) {
 		return vector.Multiply(scalar);
 	}
 
-	static Vector3D Divide(Vector3D vector, float scalar) {
+	static Vector3D Divide(Vector3D vector, double scalar) {
 		return vector.Divide(scalar);
 	}
 
@@ -92,11 +92,11 @@ public:
 		return v1.CrossProduct(v2);
 	}
 
-	static float DotProduct(Vector3D v1, Vector3D v2) {
+	static double DotProduct(Vector3D v1, Vector3D v2) {
 		return v1.DotProduct(v2);
 	}
 
-	static float CalculateEuclideanDistance(Vector3D v1, Vector3D v2) {
+	static double CalculateEuclideanDistance(Vector3D v1, Vector3D v2) {
 		return v1.CalculateEuclideanDistance(v2);
 	}
 
@@ -145,13 +145,13 @@ public:
 		return v.Divide(vector);
 	}
 
-	Vector3D operator  *(float value) {
+	Vector3D operator  *(double value) {
 		Vector3D v = Vector3D(*this);
 
 		return v.Multiply(value);
 	}
 
-	Vector3D operator  /(float value) {
+	Vector3D operator  /(double value) {
 		Vector3D v = Vector3D(*this);
 
 		return v.Divide(value);

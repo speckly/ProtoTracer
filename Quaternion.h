@@ -5,15 +5,15 @@
 
 typedef struct Quaternion {
 public:
-	float W = 1.0f;
-	float X = 0.0f;
-	float Y = 0.0f;
-	float Z = 0.0f;
+	double W = 1.0;
+	double X = 0.0;
+	double Y = 0.0;
+	double Z = 0.0;
 
 	Quaternion();
 	Quaternion(const Quaternion& quaternion);
 	Quaternion(Vector3D vector);
-	Quaternion(float W, float X, float Y, float Z);
+	Quaternion(double W, double X, double Y, double Z);
 
 	Vector3D RotateVector(Vector3D coordinate);
 	Vector3D UnrotateVector(Vector3D coordinate);
@@ -22,12 +22,12 @@ public:
 	Quaternion Add(Quaternion quaternion);
 	Quaternion Subtract(Quaternion quaternion);
 	Quaternion Multiply(Quaternion quaternion);
-	Quaternion Multiply(float scalar);
+	Quaternion Multiply(double scalar);
 	Quaternion Divide(Quaternion quaternion);
-	Quaternion Divide(float scalar);
+	Quaternion Divide(double scalar);
 	Quaternion Power(Quaternion quaternion);
 
-	Quaternion Power(float exponent);
+	Quaternion Power(double exponent);
 	Quaternion Permutate(Vector3D permutation);
 
 	Quaternion Absolute();
@@ -36,9 +36,9 @@ public:
 	Quaternion Conjugate();
 	Quaternion UnitQuaternion();
 
-	float Magnitude();
-	float DotProduct(Quaternion quaternion);
-	float Normal();
+	double Magnitude();
+	double DotProduct(Quaternion quaternion);
+	double Normal();
 
 	bool IsNaN();
 	bool IsFinite();
@@ -49,7 +49,7 @@ public:
 	string ToString();
 
 	//Static functions
-	static Quaternion SphericalInterpolation(Quaternion q1, Quaternion q2, float ratio);
+	static Quaternion SphericalInterpolation(Quaternion q1, Quaternion q2, double ratio);
 
 	static Quaternion Add(Quaternion q1, Quaternion q2) {
 		return q1.Add(q2);
@@ -71,12 +71,12 @@ public:
 		return q1.Power(q2);
 	}
 
-	static float DotProduct(Quaternion q1, Quaternion q2) {
+	static double DotProduct(Quaternion q1, Quaternion q2) {
 		return q1.DotProduct(q2);
 	}
 
 
-	static Quaternion Power(Quaternion quaternion, float exponent) {
+	static Quaternion Power(Quaternion quaternion, double exponent) {
 		return quaternion.Power(exponent);
 	}
 
@@ -104,11 +104,11 @@ public:
 		return quaternion.UnitQuaternion();
 	}
 
-	static float Magnitude(Quaternion quaternion) {
+	static double Magnitude(Quaternion quaternion) {
 		return quaternion.Magnitude();
 	}
 
-	static float Normal(Quaternion quaternion) {
+	static double Normal(Quaternion quaternion) {
 		return quaternion.Normal();
 	}
 
@@ -155,12 +155,12 @@ public:
 	}
 
 
-	Quaternion operator  /(float value) {
+	Quaternion operator  /(double value) {
 		Quaternion q = Quaternion(*this);
 
 		return q.Divide(value);
 	}
 
-	friend Quaternion operator *(float scalar, Quaternion q);
-	friend Quaternion operator *(Quaternion q, float scalar);
+	friend Quaternion operator *(double scalar, Quaternion q);
+	friend Quaternion operator *(Quaternion q, double scalar);
 } Quaternion;

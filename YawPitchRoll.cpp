@@ -18,7 +18,7 @@ YawPitchRoll::YawPitchRoll(const YawPitchRoll& ypr) {
 	this->Roll = ypr.Roll;
 }
 
-YawPitchRoll::YawPitchRoll(float yaw, float pitch, float roll) {
+YawPitchRoll::YawPitchRoll(double yaw, double pitch, double roll) {
 	this->Yaw = yaw;
 	this->Pitch = pitch;
 	this->Roll = roll;

@@ -5,11 +5,11 @@
 
 typedef struct AxisAngle {
 public:
-	float Rotation;
+	double Rotation;
 	Vector3D Axis;
 
-	AxisAngle(float rotation, float x, float y, float z);
-	AxisAngle(float rotation, Vector3D axis);
+	AxisAngle(double rotation, double x, double y, double z);
+	AxisAngle(double rotation, Vector3D axis);
 
 	string ToString();
 } AxisAngle;

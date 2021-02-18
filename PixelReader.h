@@ -45,7 +45,7 @@ public:
       if(i > count) break;//maxed out pixels available to memory, cancel reading
 
 			if (countChar(line, ',') > 2) {
-				float x, y;
+				double x, y;
 
 				x = stof(getValue(line, ',', 1));
 				y = stof(getValue(line, ',', 2));

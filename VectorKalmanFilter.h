@@ -11,7 +11,7 @@ private:
 
 public:
 	VectorKalmanFilter();
-	VectorKalmanFilter(float gain, int memory);
+	VectorKalmanFilter(double gain, int memory);
 	VectorKalmanFilter(Vector3D gain, Vector3D memory);
 
 	Vector3D Filter(Vector3D input);

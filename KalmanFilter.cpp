@@ -3,19 +3,19 @@
 KalmanFilter::KalmanFilter() {
 	this->gain = 0.25;
 	this->memory = 25;
-  values = new float[25];
+  values = new double[25];
 }
 
-KalmanFilter::KalmanFilter(float gain, int memory) {
+KalmanFilter::KalmanFilter(double gain, int memory) {
 	this->gain = gain;
 	this->memory = memory;
-  values = new float[memory];
+  values = new double[memory];
 }
 
-float KalmanFilter::Filter(float value) {
-	float sum = 0;
-	float avg = 0;
-	float gainInverse = (1 - gain);
+double KalmanFilter::Filter(double value) {
+	double sum = 0;
+	double avg = 0;
+	double gainInverse = (1 - gain);
 
   if(currentAmount < memory){
     values[currentAmount++] = value;
@@ -36,7 +36,7 @@ float KalmanFilter::Filter(float value) {
 	return (gain * value) + (gainInverse * avg);
 }
 
-float* KalmanFilter::ShiftArray(float arr[]){
+double* KalmanFilter::ShiftArray(double arr[]){
   for(int i = 0; i < memory; i++){
     arr[i] = arr[i + 1];
   }

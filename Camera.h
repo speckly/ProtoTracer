@@ -16,25 +16,25 @@ private:
   PixelReader pixelReader;
   bool antiAliasing = false;
   unsigned int antiAliasingSubdivisions = 2;
-  float pixelPixelDistance = 1.0f;
+  double pixelPixelDistance = 1.0;
 
   Vector3D CheckRasterPixel(Scene* scene, Triangle2D* triangles, int numTriangles, Vector2D pixelRay){
       Vector3D color;
-      float zBuffer = 3.402823466e+38f;
+      double zBuffer = 3.402823466e+38;
 
       for (int t = 0; t < numTriangles; t++) {
         Vector3D barycentric;
-		Vector2D tCenter = triangles[t].GetCenter();
+		//Vector2D tCenter = triangles[t].GetCenter();
 
-                //printf("PixelRay: %f, %f; ", pixelRay.X, pixelRay.Y);
-                //printf("TriangleCen: %f, %f\n", tCenter.X, tCenter.Y);
+        //printf("PixelRay: %f, %f; ", pixelRay.X, pixelRay.Y);
+        //printf("TriangleCen: %f, %f\n", tCenter.X, tCenter.Y);
 
 
 
 
         if (triangles[t].DidIntersect(pixelRay, &barycentric)) {
           Vector3D tempInt = *triangles[t].t3p1 + (*triangles[t].t3e2 * barycentric.X) + (*triangles[t].t3e1 * barycentric.Y);
-          float rayDistanceToTriangle = Vector3D(pixelRay.X + p.X, pixelRay.Y + p.Y, p.Z).CalculateEuclideanDistance(tempInt);
+          double rayDistanceToTriangle = Vector3D(pixelRay.X + p.X, pixelRay.Y + p.Y, p.Z).CalculateEuclideanDistance(tempInt);
 
 
 
@@ -45,11 +45,11 @@ private:
             for (int l = 0; l < scene->numLights; l++) {
               Vector3D lVector = scene->lights[l].p - tempInt;
 
-              float angle = triangles[t].normal.DotProduct(lVector.UnitSphere());
+              double angle = triangles[t].normal.DotProduct(lVector.UnitSphere());
 
               if (angle > 0) {
-                float lDistance = scene->lights[l].p.CalculateEuclideanDistance(tempInt) / scene->lights[l].falloff;
-                float intensity = 1.0f / (1.0f + lDistance * scene->lights[l].a + powf(lDistance / scene->lights[l].falloff, 2.0f) * scene->lights[l].b);
+                double lDistance = scene->lights[l].p.CalculateEuclideanDistance(tempInt) / scene->lights[l].falloff;
+                double intensity = 1.0 / (1.0 + lDistance * scene->lights[l].a + powf(lDistance / scene->lights[l].falloff, 2.0) * scene->lights[l].b);
 
                 color = color + (scene->lights[l].intensity * angle * intensity);//add intensity drop with distance?
               }
@@ -64,11 +64,11 @@ private:
       return color;
   }
 
-  Vector3D CheckRasterPixelAntiAlias(int subdivisions, float pixelDistance, Scene* scene, Triangle2D* triangles, int numTriangles, Vector2D pixelRay){
+  Vector3D CheckRasterPixelAntiAlias(int subdivisions, double pixelDistance, Scene* scene, Triangle2D* triangles, int numTriangles, Vector2D pixelRay){
       Vector3D color;
-      float pixelHDistance = pixelDistance / 2.0f;
-      float scanDistance = pixelDistance / (float)subdivisions;
-      Vector2D startPoint = Vector2D(-pixelHDistance + (scanDistance / 2.0f), pixelHDistance - (scanDistance / 2.0f));
+      double pixelHDistance = pixelDistance / 2.0;
+      double scanDistance = pixelDistance / (double)subdivisions;
+      Vector2D startPoint = Vector2D(-pixelHDistance + (scanDistance / 2.0), pixelHDistance - (scanDistance / 2.0));
 
       for (int i = 0; i < subdivisions; i++){
         for (int j = 0; j < subdivisions; j++){
@@ -133,7 +133,7 @@ public:
 
 	void Translate(Quaternion q, Vector3D p) {
 		this->q = (this->q + q).UnitQuaternion();
-		this->p = this->p + p.Multiply(-1.0f);
+		this->p = this->p + p.Multiply(-1.0);
 	}
 
 	void MoveTo(Quaternion q, Vector3D p) {
@@ -165,7 +165,7 @@ public:
     antiAliasingSubdivisions = level;
   }
 
-	void Rasterize(Scene* scene, float scale, float maxBrightness) {
+	void Rasterize(Scene* scene, double scale, double maxBrightness) {
     int numTriangles = 0;
 
     //printf("Num objects: %i\n", scene->numObjects);
@@ -207,7 +207,7 @@ public:
         color = color + CheckRasterPixel(scene, triangles, numTriangles, pixelRay);
       }
 
-      pixelStorage[i].RGB = color.Divide(255.0f / maxBrightness).Constrain(0.0f, maxBrightness);
+      pixelStorage[i].RGB = color.Divide(255.0 / maxBrightness).Constrain(0.0, maxBrightness);
 		}
 
 		delete[] triangles;

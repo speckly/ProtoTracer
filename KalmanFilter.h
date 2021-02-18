@@ -2,16 +2,16 @@
 
 class KalmanFilter {
 private:
-	float gain;
+	double gain;
 	int memory;
-	float* values;
+	double* values;
   int currentAmount = 0;
 
-  float* ShiftArray(float arr[]);
+  double* ShiftArray(double arr[]);
 
 public:
 	KalmanFilter();
-	KalmanFilter(float gain, int memory);
-	float Filter(float value);
+	KalmanFilter(double gain, int memory);
+	double Filter(double value);
 
 };
