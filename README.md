@@ -1,3 +1,5 @@
+#THIS BRANCH IS A WORK-IN-PROGRESS AND NOT CURRENTLY SUPPORTED
+
 # **ProtoTracer: 3D Rendering and Animation Engine**
 This project is a live 3D rendering and animation engine designed for use on microcontrollers.
 
